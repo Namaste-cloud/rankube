@@ -7,6 +7,22 @@ class InstanceOrchestrator {
     this.instances = [];
     this.breakers = new Map();
     this.lastRefresh = 0;
+    this.setFallbackInstances();
+  }
+
+  setFallbackInstances() {
+    const fallback = [
+      { domain: 'yewtu.be', uri: 'https://yewtu.be', score: 100 },
+      { domain: 'invidious.flokinet.to', uri: 'https://invidious.flokinet.to', score: 95 },
+      { domain: 'inv.us.projectsegfaut.im', uri: 'https://inv.us.projectsegfaut.im', score: 90 },
+      { domain: 'invidious.nerdvpn.de', uri: 'https://invidious.nerdvpn.de', score: 85 }
+    ];
+    this.instances = fallback;
+    fallback.forEach(inst => {
+      if (!this.breakers.has(inst.uri)) {
+        this.breakers.set(inst.uri, new CircuitBreaker(`invidious-${inst.domain}`));
+      }
+    });
   }
 
   async refreshInstances() {
@@ -63,9 +79,16 @@ class InstanceOrchestrator {
 
       this.lastRefresh = Date.now();
       logger.info(`Successfully loaded ${this.instances.length} healthy Invidious instances`);
+      
+      if (this.instances.length === 0) {
+        logger.warn('No healthy Invidious instances found from API. Using static fallback.');
+        this.setFallbackInstances();
+      }
     } catch (error) {
       logger.error('Failed to refresh Invidious instances', { error: error.message });
-      // If we have some instances, we can continue. Otherwise, we might have issues.
+      if (this.instances.length === 0) {
+        this.setFallbackInstances();
+      }
     }
   }
 
