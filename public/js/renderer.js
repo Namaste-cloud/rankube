@@ -134,19 +134,23 @@ function createVideoCard(video, rank) {
   const metaHTML = metaParts.join('<span class="separator" aria-hidden="true"></span>');
 
   card.innerHTML = `
-    <div class="video-thumbnail">
-      ${rankBadgeHTML}
-      <img
-        src="${thumbnailURL}"
-        alt="${title}"
-        loading="lazy"
-        decoding="async"
-        onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 320 180%22><rect fill=%22%23111118%22 width=%22320%22 height=%22180%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2344445a%22 font-size=%2214%22>No Thumbnail</text></svg>'"
-      />
-      ${durationHTML}
-    </div>
+    <a href="${ytURL}" target="_blank" rel="noopener noreferrer" class="video-card-link-wrapper">
+      <div class="video-thumbnail">
+        ${rankBadgeHTML}
+        <img
+          src="${thumbnailURL}"
+          alt="${title}"
+          loading="lazy"
+          decoding="async"
+          onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 320 180%22><rect fill=%22%23111118%22 width=%22320%22 height=%22180%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2344445a%22 font-size=%2214%22>No Thumbnail</text></svg>'"
+        />
+        ${durationHTML}
+      </div>
+    </a>
     <div class="video-info">
-      <h3 class="video-title" data-tooltip="${title.replace(/"/g, '&quot;')}">${title}</h3>
+      <a href="${ytURL}" target="_blank" rel="noopener noreferrer" class="video-title-link">
+        <h3 class="video-title" data-tooltip="${title.replace(/"/g, '&quot;')}">${title}</h3>
+      </a>
       <div class="video-channel">
         <span class="truncate">${channel}</span>
         ${verifiedHTML}

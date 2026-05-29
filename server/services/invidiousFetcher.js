@@ -12,7 +12,7 @@ async function fetchFromInvidious(region, type) {
 
   const queryParams = new URLSearchParams({
     region,
-    type: type !== 'Default' ? type : ''
+    type: type !== 'Default' ? type.toLowerCase() : ''
   });
   
   // Remove empty params

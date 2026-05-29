@@ -42,31 +42,6 @@
       />
       <span class="header-title">Rankube</span>
     </div>
-    
-    <div class="header-center">
-      <form id="search-form" class="search-form" role="search">
-        <div class="search-input-wrapper">
-          <span class="search-icon-svg" aria-hidden="true">🔍</span>
-          <input
-            id="search-input"
-            class="search-input"
-            type="search"
-            placeholder="Search topics..."
-            aria-label="Search popularity ranking"
-            autocomplete="off"
-          />
-          <button
-            id="search-clear-btn"
-            class="search-clear-btn"
-            type="button"
-            aria-label="Clear search"
-            style="display: none;"
-          >
-            ✕
-          </button>
-        </div>
-      </form>
-    </div>
 
     <div class="header-right">
       <!-- Last Updated -->
@@ -125,6 +100,32 @@
        MAIN CONTENT
        ════════════════════════════════════════ -->
   <main class="main-content" role="main">
+    <!-- Search Bar Section -->
+    <section class="search-section" aria-label="Search">
+      <form id="search-form" class="search-form" role="search">
+        <div class="search-input-wrapper">
+          <span class="search-icon-svg" aria-hidden="true">🔍</span>
+          <input
+            id="search-input"
+            class="search-input"
+            type="search"
+            placeholder="Search topics (e.g. music, kpop)..."
+            aria-label="Search popularity ranking"
+            autocomplete="off"
+          />
+          <button
+            id="search-clear-btn"
+            class="search-clear-btn"
+            type="button"
+            aria-label="Clear search"
+            style="display: none;"
+          >
+            ✕
+          </button>
+        </div>
+      </form>
+    </section>
+
     <!-- Search Results Status -->
     <div id="search-status" class="search-status" style="display: none;">
       <h2 class="search-status-title">
