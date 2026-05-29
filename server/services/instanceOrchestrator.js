@@ -12,9 +12,9 @@ class InstanceOrchestrator {
 
   setFallbackInstances() {
     const fallback = [
-      { domain: 'yewtu.be', uri: 'https://yewtu.be', score: 100 },
-      { domain: 'invidious.flokinet.to', uri: 'https://invidious.flokinet.to', score: 95 },
-      { domain: 'inv.us.projectsegfaut.im', uri: 'https://inv.us.projectsegfaut.im', score: 90 },
+      { domain: 'inv.thepixora.com', uri: 'https://inv.thepixora.com', score: 100 },
+      { domain: 'inv.nadeko.net', uri: 'https://inv.nadeko.net', score: 95 },
+      { domain: 'yewtu.be', uri: 'https://yewtu.be', score: 90 },
       { domain: 'invidious.nerdvpn.de', uri: 'https://invidious.nerdvpn.de', score: 85 }
     ];
     this.instances = fallback;
