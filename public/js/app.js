@@ -209,6 +209,7 @@ function init() {
   searchQueryHighlight = document.getElementById('search-query-highlight');
   searchBackBtn = document.getElementById('search-back-btn');
   filterSection = document.getElementById('filter-section');
+  const homeLink = document.getElementById('home-link');
 
   // 1. Initialize theme
   initTheme();
@@ -261,6 +262,15 @@ function init() {
   // Copy link button
   if (copyLinkBtn) {
     copyLinkBtn.addEventListener('click', copyCurrentLink);
+  }
+
+  // Home Link Click
+  if (homeLink) {
+    homeLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      setState({ searchQuery: '', type: 'Default' });
+      loadTrending(true);
+    });
   }
 
   // Search Submit
