@@ -44,7 +44,10 @@ async function fetchFromPiped(region, type) {
     }
   }
 
-  async function searchFromPiped(query) {
+  throw new Error(`All Piped attempts failed. Last error: ${lastError?.message}`);
+}
+
+async function searchFromPiped(query) {
   const queryParams = new URLSearchParams({ q: query, filter: 'videos' });
   let lastError = null;
 
