@@ -1,0 +1,186 @@
+/* =============================================
+   Rankube — Responsive Breakpoints
+   ============================================= */
+
+/* ── Mobile: < 640px ── */
+@media (max-width: 639px) {
+  .app-header {
+    padding: 0 16px;
+    height: 56px;
+  }
+
+  .header-title {
+    font-size: 1.1rem;
+  }
+
+  .header-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .header-meta {
+    display: none;
+  }
+
+  .main-content {
+    padding: 68px 12px 32px;
+  }
+
+  .filter-bar {
+    gap: 10px;
+    padding: 12px 0;
+  }
+
+  .filter-group {
+    flex-wrap: nowrap;
+  }
+
+  .filter-group-label {
+    min-width: 48px;
+    font-size: 0.625rem;
+  }
+
+  .filter-pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 2px;
+  }
+
+  .filter-pill {
+    padding: 5px 11px;
+    font-size: 0.75rem;
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .video-info {
+    padding: 12px 14px 14px;
+  }
+
+  .video-title {
+    font-size: 0.875rem;
+  }
+
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+  h3 { font-size: 1rem; }
+
+  .btn-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+  }
+
+  .toast-container {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+  }
+
+  .toast {
+    font-size: 0.8125rem;
+  }
+
+  .state-message {
+    padding: 48px 16px;
+  }
+
+  .app-footer {
+    padding: 24px 16px;
+  }
+}
+
+/* ── Tablet: 640px – 1023px ── */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .main-content {
+    padding: 76px 20px 40px;
+  }
+
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .filter-pills {
+    flex-wrap: wrap;
+  }
+}
+
+/* ── Desktop: 1024px – 1439px ── */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .main-content {
+    padding: 80px 32px 48px;
+  }
+
+  .video-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .filter-pills {
+    flex-wrap: wrap;
+  }
+}
+
+/* ── Wide: >= 1440px ── */
+@media (min-width: 1440px) {
+  .main-content {
+    padding: 80px 40px 56px;
+  }
+
+  .video-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+
+  .filter-pills {
+    flex-wrap: wrap;
+  }
+}
+
+/* ── Extra Wide: >= 1800px ── */
+@media (min-width: 1800px) {
+  .video-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* ── Hover media query: disable hover effects on touch ── */
+@media (hover: none) {
+  .video-card:hover {
+    transform: none;
+    box-shadow: var(--shadow-card);
+    border-color: var(--border-subtle);
+  }
+
+  .video-card:hover .video-thumbnail img {
+    transform: none;
+  }
+
+  .video-card:hover .video-title {
+    color: var(--text-primary);
+  }
+
+  [data-tooltip]:hover::after {
+    display: none;
+  }
+}
+
+/* ── Reduced motion preference ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rankube — Discover trending YouTube videos ranked in real-time across countries and categories." />
+  <meta name="theme-color" content="#06060b" />
+  <meta name="color-scheme" content="dark light" />
+
+  <title>Rankube — YouTube Trending Rankings</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/skeleton.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body>
+  <!-- ════════════════════════════════════════
+       HEADER
+       ════════════════════════════════════════ -->
+  <header class="app-header" role="banner">
+    <div class="header-left">
+      <img
+        src="/assets/favicon.svg"
+        alt="Rankube logo"
+        class="header-logo"
+        width="36"
+        height="36"
+      />
+      <span class="header-title">Rankube</span>
+    </div>
+
+    <div class="header-right">
+      <!-- Last Updated -->
+      <div class="header-meta">
+        <time id="last-updated" class="last-updated" aria-label="Last updated time">—</time>
+      </div>
+
+      <!-- Auto-Refresh Toggle -->
+      <button
+        id="auto-refresh-toggle"
+        class="auto-refresh-toggle active"
+        type="button"
+        aria-label="Toggle auto-refresh"
+        aria-pressed="true"
+      >
+        <span class="dot" aria-hidden="true"></span>
+        <span>Auto</span>
+      </button>
+
+      <!-- Refresh Button -->
+      <button
+        id="refresh-btn"
+        class="btn-icon"
+        type="button"
+        aria-label="Refresh trending videos"
+        data-tooltip="Refresh"
+      >
+        <span class="refresh-icon" aria-hidden="true">🔄</span>
+      </button>
+
+      <!-- Copy Link Button -->
+      <button
+        id="copy-link-btn"
+        class="btn-icon"
+        type="button"
+        aria-label="Copy link to current view"
+        data-tooltip="Copy link"
+      >
+        <span aria-hidden="true">🔗</span>
+      </button>
+
+      <!-- Theme Toggle -->
+      <button
+        id="theme-toggle"
+        class="btn-icon"
+        type="button"
+        aria-label="Toggle dark/light mode"
+        data-tooltip="Toggle theme"
+      >
+        <span class="theme-icon" aria-hidden="true">☀️</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════
+       MAIN CONTENT
+       ════════════════════════════════════════ -->
+  <main class="main-content" role="main">
+    <!-- Filter Bar -->
+    <section aria-label="Filter controls">
+      <div id="filter-bar" class="filter-bar">
+        <!-- Filter pills rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Video Grid -->
+    <section aria-label="Trending videos">
+      <div id="video-grid">
+        <!-- Video cards or skeleton rendered by JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════ -->
+  <footer class="app-footer" role="contentinfo">
+    <p>Rankube — YouTube Trending Video Rankings</p>
+    <div class="source-badge">
+      <span aria-hidden="true">📡</span>
+      <span>via Invidious API</span>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════════════
+       NO-SCRIPT FALLBACK
+       ════════════════════════════════════════ -->
+  <noscript>
+    <div style="display:flex;align-items:center;justify-content:center;min-height:60vh;padding:2rem;text-align:center;font-family:Inter,sans-serif;color:#e8e8ed;">
+      <div>
+        <h2 style="margin-bottom:1rem;">JavaScript Required</h2>
+        <p style="color:#6b6b80;">Rankube requires JavaScript to display trending video rankings. Please enable JavaScript in your browser settings and reload this page.</p>
+      </div>
+    </div>
+  </noscript>
+
+  <!-- Application Script -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

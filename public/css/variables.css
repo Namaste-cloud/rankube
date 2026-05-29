@@ -1,0 +1,84 @@
+/* =============================================
+   Rankube — Design Tokens (CSS Custom Properties)
+   ============================================= */
+
+:root {
+  /* ── Backgrounds ── */
+  --bg-primary: #06060b;
+  --bg-secondary: #0d0d14;
+  --bg-card: #111118;
+  --bg-card-hover: #16161f;
+  --bg-glass: rgba(255, 255, 255, 0.03);
+  --bg-glass-border: rgba(255, 255, 255, 0.06);
+
+  /* ── Accent Colors ── */
+  --accent-primary: #7c6aef;
+  --accent-primary-glow: rgba(124, 106, 239, 0.15);
+  --accent-secondary: #2dd4bf;
+  --accent-secondary-glow: rgba(45, 212, 191, 0.15);
+
+  /* ── Gradients ── */
+  --gradient-primary: linear-gradient(135deg, #7c6aef, #2dd4bf);
+  --gradient-gold: linear-gradient(135deg, #ffd700, #ffaa00);
+  --gradient-silver: linear-gradient(135deg, #e8e8e8, #a0a0a0);
+  --gradient-bronze: linear-gradient(135deg, #cd7f32, #a0522d);
+
+  /* ── Medal Colors ── */
+  --gold: #ffd700;
+  --silver: #c0c0c0;
+  --bronze: #cd7f32;
+
+  /* ── Text ── */
+  --text-primary: #e8e8ed;
+  --text-secondary: #6b6b80;
+  --text-tertiary: #44445a;
+
+  /* ── Borders ── */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+
+  /* ── Shadows ── */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.6);
+  --shadow-glow-gold: 0 0 30px rgba(255, 215, 0, 0.2);
+  --shadow-glow-purple: 0 0 30px rgba(124, 106, 239, 0.2);
+
+  /* ── Radii ── */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* ── Transitions ── */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Typography ── */
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ── Z-index ── */
+  --z-header: 100;
+  --z-modal: 200;
+  --z-toast: 300;
+}
+
+/* ── Light Mode Overrides ── */
+[data-theme="light"] {
+  --bg-primary: #f8f9fc;
+  --bg-secondary: #eef0f5;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f4f5f8;
+  --bg-glass: rgba(255, 255, 255, 0.7);
+  --bg-glass-border: rgba(0, 0, 0, 0.08);
+
+  --text-primary: #1a1a2e;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-hover: rgba(0, 0, 0, 0.12);
+
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 4px 20px rgba(0, 0, 0, 0.12);
+}

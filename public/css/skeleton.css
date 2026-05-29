@@ -1,0 +1,213 @@
+/* =============================================
+   Rankube — Skeleton Loading Animations
+   ============================================= */
+
+/* ── Base Skeleton ── */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 40%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(255, 255, 255, 0.03) 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+[data-theme="light"] .skeleton::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.03) 40%,
+    rgba(0, 0, 0, 0.06) 50%,
+    rgba(0, 0, 0, 0.03) 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ── Skeleton Card ── */
+.skeleton-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* ── Skeleton Thumbnail ── */
+.skeleton-thumbnail {
+  aspect-ratio: 16 / 9;
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-thumbnail::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 40%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(255, 255, 255, 0.03) 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+[data-theme="light"] .skeleton-thumbnail::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.03) 40%,
+    rgba(0, 0, 0, 0.06) 50%,
+    rgba(0, 0, 0, 0.03) 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+}
+
+/* ── Skeleton Text Lines ── */
+.skeleton-text {
+  height: 14px;
+  border-radius: 6px;
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-text::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 40%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(255, 255, 255, 0.03) 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+[data-theme="light"] .skeleton-text::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.03) 40%,
+    rgba(0, 0, 0, 0.06) 50%,
+    rgba(0, 0, 0, 0.03) 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+}
+
+.skeleton-text.w-80 { width: 80%; }
+.skeleton-text.w-60 { width: 60%; }
+.skeleton-text.w-40 { width: 40%; }
+.skeleton-text.w-50 { width: 50%; }
+.skeleton-text.w-70 { width: 70%; }
+.skeleton-text.w-90 { width: 90%; }
+
+.skeleton-text.h-lg {
+  height: 18px;
+}
+
+/* ── Skeleton Badge ── */
+.skeleton-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.skeleton-badge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* ── Skeleton Card Info Section ── */
+.skeleton-info {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Skeleton Meta Row ── */
+.skeleton-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ── Animation stagger for skeleton cards ── */
+.skeleton-card:nth-child(2) .skeleton-thumbnail::after,
+.skeleton-card:nth-child(2) .skeleton-text::after,
+.skeleton-card:nth-child(2) .skeleton-badge::after {
+  animation-delay: 0.15s;
+}
+
+.skeleton-card:nth-child(3) .skeleton-thumbnail::after,
+.skeleton-card:nth-child(3) .skeleton-text::after,
+.skeleton-card:nth-child(3) .skeleton-badge::after {
+  animation-delay: 0.3s;
+}
+
+.skeleton-card:nth-child(4) .skeleton-thumbnail::after,
+.skeleton-card:nth-child(4) .skeleton-text::after,
+.skeleton-card:nth-child(4) .skeleton-badge::after {
+  animation-delay: 0.45s;
+}
+
+.skeleton-card:nth-child(5) .skeleton-thumbnail::after,
+.skeleton-card:nth-child(5) .skeleton-text::after,
+.skeleton-card:nth-child(5) .skeleton-badge::after {
+  animation-delay: 0.6s;
+}
+
+.skeleton-card:nth-child(6) .skeleton-thumbnail::after,
+.skeleton-card:nth-child(6) .skeleton-text::after,
+.skeleton-card:nth-child(6) .skeleton-badge::after {
+  animation-delay: 0.75s;
+}
