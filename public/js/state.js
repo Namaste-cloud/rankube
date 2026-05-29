@@ -49,6 +49,7 @@ export function readFromURL() {
     region: validateRegion(params.get('region') || DEFAULT_STATE.region),
     type: validateType(params.get('type') || DEFAULT_STATE.type),
     limit: validateLimit(params.get('limit') || DEFAULT_STATE.limit),
+    searchQuery: params.get('q') || '',
     autoRefresh: state.autoRefresh, // autoRefresh is not persisted in URL
   };
 }
@@ -59,8 +60,12 @@ export function readFromURL() {
  */
 export function writeToURL(s) {
   const params = new URLSearchParams();
-  params.set('region', s.region);
-  params.set('type', s.type);
+  if (s.searchQuery) {
+    params.set('q', s.searchQuery);
+  } else {
+    params.set('region', s.region);
+    params.set('type', s.type);
+  }
   params.set('limit', String(s.limit));
 
   const newURL = `${window.location.pathname}?${params.toString()}`;
@@ -110,6 +115,7 @@ export function setState(partial) {
     prev.region !== state.region ||
     prev.type !== state.type ||
     prev.limit !== state.limit ||
+    prev.searchQuery !== state.searchQuery ||
     prev.autoRefresh !== state.autoRefresh;
 
   if (changed) {

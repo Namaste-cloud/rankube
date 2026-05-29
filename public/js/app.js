@@ -4,7 +4,7 @@
 
 import { initTheme, toggleTheme } from './theme.js';
 import { getState, setState, subscribe, readFromURL } from './state.js';
-import { fetchTrending } from './api.js';
+import { fetchTrending, searchVideos } from './api.js';
 import { renderFilters, updateFilterSelection } from './filters.js';
 import { renderVideoGrid, renderSkeleton, renderError } from './renderer.js';
 import { AUTO_REFRESH_INTERVAL, COUNTRIES } from './constants.js';
@@ -18,6 +18,15 @@ let autoRefreshToggle;
 let themeToggleBtn;
 let copyLinkBtn;
 let refreshIcon;
+
+// Search DOM References
+let searchForm;
+let searchInput;
+let searchClearBtn;
+let searchStatus;
+let searchQueryHighlight;
+let searchBackBtn;
+let filterSection;
 
 /* ── Timers ── */
 let autoRefreshTimer = null;
@@ -60,7 +69,25 @@ function updateLastUpdatedTime() {
   lastUpdatedEl.setAttribute('datetime', now.toISOString());
 }
 
-/* ── Fetch and Render Trending Data ── */
+/* ── Update Search UI Visibility ── */
+function updateSearchUI(state) {
+  if (!searchStatus || !filterSection || !searchInput || !searchClearBtn || !searchQueryHighlight) return;
+
+  if (state.searchQuery) {
+    searchStatus.style.display = 'flex';
+    filterSection.style.display = 'none';
+    searchQueryHighlight.textContent = state.searchQuery;
+    searchInput.value = state.searchQuery;
+    searchClearBtn.style.display = 'flex';
+  } else {
+    searchStatus.style.display = 'none';
+    filterSection.style.display = 'block';
+    searchInput.value = '';
+    searchClearBtn.style.display = 'none';
+  }
+}
+
+/* ── Fetch and Render Trending/Search Data ── */
 let isLoading = false;
 
 async function loadTrending(showSkeletons = true) {
@@ -79,19 +106,27 @@ async function loadTrending(showSkeletons = true) {
     refreshIcon.classList.add('spin');
   }
 
+  // Update Search UI state
+  updateSearchUI(state);
+
   try {
-    const videos = await fetchTrending(state.region, state.type, state.limit);
+    let videos;
+    if (state.searchQuery) {
+      videos = await searchVideos(state.searchQuery, state.limit);
+      document.title = `Rankube — Search: "${state.searchQuery}"`;
+    } else {
+      videos = await fetchTrending(state.region, state.type, state.limit);
+      const country = COUNTRIES.find((c) => c.code === state.region);
+      if (country) {
+        document.title = `Rankube — ${country.flag} ${country.name} Trending`;
+      }
+    }
+
     renderVideoGrid(videoContainer, videos);
     updateLastUpdatedTime();
-
-    // Update document title with current region
-    const country = COUNTRIES.find((c) => c.code === state.region);
-    if (country) {
-      document.title = `Rankube — ${country.flag} ${country.name} Trending`;
-    }
   } catch (err) {
-    console.error('[App] Failed to load trending:', err);
-    renderError(videoContainer, err.message || 'Failed to load trending videos.', () =>
+    console.error('[App] Failed to load data:', err);
+    renderError(videoContainer, err.message || 'Failed to load videos.', () =>
       loadTrending(true)
     );
   } finally {
@@ -166,6 +201,15 @@ function init() {
   copyLinkBtn = document.getElementById('copy-link-btn');
   refreshIcon = refreshBtn?.querySelector('.refresh-icon');
 
+  // Search DOM refs
+  searchForm = document.getElementById('search-form');
+  searchInput = document.getElementById('search-input');
+  searchClearBtn = document.getElementById('search-clear-btn');
+  searchStatus = document.getElementById('search-status');
+  searchQueryHighlight = document.getElementById('search-query-highlight');
+  searchBackBtn = document.getElementById('search-back-btn');
+  filterSection = document.getElementById('filter-section');
+
   // 1. Initialize theme
   initTheme();
 
@@ -217,6 +261,39 @@ function init() {
   // Copy link button
   if (copyLinkBtn) {
     copyLinkBtn.addEventListener('click', copyCurrentLink);
+  }
+
+  // Search Submit
+  if (searchForm) {
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = searchInput.value.trim();
+      if (val) {
+        setState({ searchQuery: val });
+        loadTrending(true);
+      }
+    });
+  }
+
+  // Search Clear & Back Actions
+  const clearSearch = () => {
+    setState({ searchQuery: '' });
+    loadTrending(true);
+  };
+
+  if (searchClearBtn) {
+    searchClearBtn.addEventListener('click', clearSearch);
+  }
+
+  if (searchBackBtn) {
+    searchBackBtn.addEventListener('click', clearSearch);
+  }
+
+  // Search Input change (show/hide clear button)
+  if (searchInput && searchClearBtn) {
+    searchInput.addEventListener('input', () => {
+      searchClearBtn.style.display = searchInput.value ? 'flex' : 'none';
+    });
   }
 
   // Subscribe to state changes (for popstate / back-forward navigation)

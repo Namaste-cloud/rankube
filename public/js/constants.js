@@ -34,4 +34,5 @@ export const DEFAULT_STATE = {
   type: 'Default',
   limit: 20,
   autoRefresh: true,
+  searchQuery: '',
 };

@@ -42,6 +42,31 @@
       />
       <span class="header-title">Rankube</span>
     </div>
+    
+    <div class="header-center">
+      <form id="search-form" class="search-form" role="search">
+        <div class="search-input-wrapper">
+          <span class="search-icon-svg" aria-hidden="true">🔍</span>
+          <input
+            id="search-input"
+            class="search-input"
+            type="search"
+            placeholder="Search topics..."
+            aria-label="Search popularity ranking"
+            autocomplete="off"
+          />
+          <button
+            id="search-clear-btn"
+            class="search-clear-btn"
+            type="button"
+            aria-label="Clear search"
+            style="display: none;"
+          >
+            ✕
+          </button>
+        </div>
+      </form>
+    </div>
 
     <div class="header-right">
       <!-- Last Updated -->
@@ -100,8 +125,18 @@
        MAIN CONTENT
        ════════════════════════════════════════ -->
   <main class="main-content" role="main">
+    <!-- Search Results Status -->
+    <div id="search-status" class="search-status" style="display: none;">
+      <h2 class="search-status-title">
+        Search results for <span id="search-query-highlight">""</span>
+      </h2>
+      <button id="search-back-btn" class="btn-secondary" type="button">
+        ✕ Clear Search
+      </button>
+    </div>
+
     <!-- Filter Bar -->
-    <section aria-label="Filter controls">
+    <section id="filter-section" aria-label="Filter controls">
       <div id="filter-bar" class="filter-bar">
         <!-- Filter pills rendered by JS -->
       </div>

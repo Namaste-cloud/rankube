@@ -12,6 +12,7 @@ const { createRateLimiter } = require('./middleware/rateLimit');
 const errorHandler = require('./middleware/errorHandler');
 
 const trendingRouter = require('./routes/trending');
+const searchRouter = require('./routes/search');
 const healthRouter = require('./routes/health');
 
 // Configure App
@@ -33,6 +34,7 @@ const cacheMiddleware = createCacheMiddleware();
 
 // API Routes
 app.use('/api/trending', cacheMiddleware, trendingRouter);
+app.use('/api/search', cacheMiddleware, searchRouter);
 app.use('/api', healthRouter); // /api/health, /api/countries, /api/categories
 
 // Static File Serving (Frontend)
