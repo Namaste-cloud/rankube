@@ -17,7 +17,7 @@ function errorHandler(err, req, res, next) {
 
   res.status(statusCode).json({
     error: true,
-    message: isKnownError ? err.message : 'Internal Server Error',
+    message: err.message || 'Internal Server Error',
     code: err.code || 'INTERNAL_ERROR',
     timestamp: new Date().toISOString(),
     ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
