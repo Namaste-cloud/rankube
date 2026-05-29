@@ -64,7 +64,10 @@ async function fetchFromInvidious(region, type) {
     }
   }
 
-  async function searchFromInvidious(query) {
+  throw new Error(`All Invidious attempts failed. Last error: ${lastError?.message}`);
+}
+
+async function searchFromInvidious(query) {
   const instances = instanceOrchestrator.getTopInstances(3);
   
   if (instances.length === 0) {
